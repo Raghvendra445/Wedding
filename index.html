@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Regal Invitation | Devesh &amp; Priya</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Be+Vietnam+Pro:wght@300;400;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#800000", // Maroon
+                        "secondary": "#D4AF37", // Gold
+                        "background": "#FDFBF0", // Cream
+                        "surface": "#FFFFFF",
+                        "on-surface": "#2D2D2D",
+                        "outline-variant": "#E5E1DA"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif", "serif"],
+                        "body": ["Be Vietnam Pro", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .mandala-bg {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIj48cGF0aCBkPSJNMzAgMjBMNDAgMEw1MCAyMEw3MCAzMEw1MCA0MEw0MCA2MEwzMCA0MEwxMCAzMEwiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q0QUYzNyIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+        }
+
+        .fade-enter {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .fade-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 600ms ease-out, transform 600ms ease-out;
+        }
+
+        .content-transition {
+            transition: opacity 400ms ease-in-out, transform 400ms ease-in-out;
+        }
+
+        .hidden-content {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        .active-content {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface font-body overflow-hidden">
+    <!-- Ambient Music Toggle -->
+    <button
+        class="fixed top-6 right-6 z-[100] w-12 h-12 rounded-full flex items-center justify-center bg-primary text-secondary shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
+        id="music-toggle">
+        <audio id="bgMusic" loop preload="auto">
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <span class="material-symbols-outlined">music_note</span>
+    </button>
+    <div class="relative h-screen w-full flex items-center justify-center mandala-bg overflow-hidden">
+        <!-- HERO SECTION -->
+        <div class="flex flex-col items-center justify-center text-center px-6 max-w-4xl transition-all duration-700 ease-in-out"
+            id="hero-section">
+            <div class="relative mb-8 group">
+                <div
+                    class="absolute -inset-2 border-2 border-secondary/20 rounded-full animate-[spin_20s_linear_infinite]">
+                </div>
+                <img alt="Devesh &amp; Priya"
+                    class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full shadow-2xl border-4 border-secondary/30 relative z-10"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3DFClL9FgTjmsxn4qzDrOOh29qOTlQoqebeepLcY0BgVuI2egnaFHm-dWZwCszP1OOEUsc6KFWzwopbrhXrnh6ni6x4lu9wjZzMNHJQfG_zj_rrZh6aH0igD6N2F1brB-kDJB3Bn3dS_ngcr1F6bUw4fxJNlTzeyOuzuU0ibv1j07Z71D-UKq4ABAteDjptOkZpqY89MY4q7EZ5sl9-C5fpEaow2KIl1CWquODHfvjFbmpojxzRIH-u8jk0iuL6s1vU3eRh7geA4" />
+            </div>
+            <h1 class="font-headline text-4xl md:text-6xl text-primary font-bold mb-2">
+                Devesh Singh <span class="text-secondary">❤️</span> Priya
+            </h1>
+            <p class="font-headline text-xl text-primary/70 tracking-widest mb-8">20 APRIL 2026</p>
+            <!-- Countdown -->
+            <div class="flex gap-4 md:gap-8 mb-12" id="countdown">
+                <div class="flex flex-col">
+                    <span class="text-2xl md:text-3xl font-headline font-bold text-primary" id="days">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-secondary">Days</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl md:text-3xl font-headline font-bold text-primary" id="hours">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-secondary">Hrs</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl md:text-3xl font-headline font-bold text-primary" id="minutes">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-secondary">Mins</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-2xl md:text-3xl font-headline font-bold text-primary" id="seconds">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-secondary">Secs</span>
+                </div>
+            </div>
+            <button
+                class="group relative px-12 py-4 bg-primary text-secondary font-bold tracking-widest uppercase rounded shadow-2xl hover:bg-primary/90 transition-all active:scale-95"
+                onclick="openInvitation()">
+                Open Invitation
+                <div class="absolute inset-0 border border-secondary/30 m-1 rounded"></div>
+            </button>
+        </div>
+        <!-- MAIN INVITATION CONTENT (Hidden Initially) -->
+        <div class="hidden opacity-0 translate-y-10 w-full max-w-4xl px-4 flex flex-col items-center"
+            id="invitation-content">
+            <div
+                class="bg-surface w-full p-8 md:p-12 rounded shadow-2xl relative overflow-hidden border-t-4 border-primary">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 right-0 w-32 h-32 opacity-5 pointer-events-none">
+                    <span class="material-symbols-outlined text-8xl text-secondary">yard</span>
+                </div>
+                <!-- Dynamic Content Area -->
+                <div class="min-h-[350px] mb-8 content-transition" id="display-area">
+                    <!-- OUR STORY -->
+                    <div class="active-content space-y-6 text-center" id="content-story">
+                        <h2 class="font-headline text-3xl text-primary italic">Our Story</h2>
+                        <div class="w-16 h-px bg-secondary mx-auto"></div>
+                        <p class="text-lg text-on-surface/80 italic leading-relaxed max-w-2xl mx-auto">
+                            "What started as a chance encounter blossomed into a lifelong journey. Two souls destined to
+                            wander together, now uniting their paths under the stars of Rajasthan."
+                        </p>
+                        <span class="material-symbols-outlined text-secondary fill-icon">favorite</span>
+                    </div>
+                    <!-- EVENTS -->
+                    <div class="hidden-content space-y-8" id="content-events">
+                        <h2 class="font-headline text-3xl text-primary text-center italic">Manglik Karyakram</h2>
+                        <div class="grid gap-6">
+                            <div class="flex items-center gap-4 p-4 border-l-4 border-secondary bg-primary/5">
+                                <div class="text-center min-w-[80px]">
+                                    <p class="font-bold text-primary">19 April</p>
+                                    <p class="text-xs uppercase text-secondary">2026</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline font-bold text-primary">Ghee Function / Vinayak</h3>
+                                    <p class="text-sm text-on-surface/60">09:15 AM Onwards</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 border-l-4 border-secondary bg-primary/5">
+                                <div class="text-center min-w-[80px]">
+                                    <p class="font-bold text-primary">19 April</p>
+                                    <p class="text-xs uppercase text-secondary">2026</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline font-bold text-primary">Bandoli</h3>
+                                    <p class="text-sm text-on-surface/60">08:15 PM Onwards</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 border-l-4 border-primary bg-primary/10">
+                                <div class="text-center min-w-[80px]">
+                                    <p class="font-bold text-primary">20 April</p>
+                                    <p class="text-xs uppercase text-secondary">2026</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline font-bold text-primary uppercase tracking-wider">Barat
+                                        &amp; Wedding</h3>
+                                    <p class="text-sm text-on-surface/60">05:15 PM Onwards</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- VENUE -->
+                    <div class="hidden-content text-center space-y-6" id="content-venue">
+                        <h2 class="font-headline text-3xl text-primary italic">The Venue</h2>
+                        <span class="material-symbols-outlined text-4xl text-secondary">location_on</span>
+                        <div>
+                            <h3 class="text-2xl font-headline text-primary mb-2">Meera Vatika</h3>
+                            <p class="text-on-surface/70 uppercase tracking-widest text-sm">Sursagar, Bypass, Jodhpur,
+                                Rajasthan</p>
+                        </div>
+                        <a class="inline-block px-8 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors uppercase text-xs font-bold tracking-widest"
+                            href="https://maps.app.goo.gl/gTNSFYUeKBV8FZyX7" target="_blank">View on Map</a>
+                    </div>
+                    <!-- FAMILY -->
+                    <div class="hidden-content space-y-8" id="content-family">
+                        <h2 class="font-headline text-3xl text-primary text-center italic">With Blessings</h2>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <h3 class="text-xs uppercase tracking-widest text-secondary font-bold text-center">
+                                    Groom's Side</h3>
+                                <div class="text-center text-sm space-y-1">
+                                    <p class="text-on-surface/60">Grandparents</p>
+                                    <p class="font-headline text-primary">Late Shri Bhanwar Singh Ji Chauhan</p>
+                                    <p class="font-headline text-primary">Smt. Godavari Devi</p>
+                                    <p class="text-on-surface/60 mt-2">Parents</p>
+                                    <p class="font-headline text-primary">Sh. Dalpat Singh Chauhan &amp; Smt. Dhanwanti
+                                        Devi</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-xs uppercase tracking-widest text-secondary font-bold text-center">
+                                    Bride's Side</h3>
+                                <div class="text-center text-sm space-y-1">
+                                    <p class="text-on-surface/60">Grandparents</p>
+                                    <p class="font-headline text-primary">Late Shri Mohan Singh Ji Panwar</p>
+                                    <p class="font-headline text-primary">Smt. Sharda Devi</p>
+                                    <p class="text-on-surface/60 mt-2">Parents</p>
+                                    <p class="font-headline text-primary">Sh. Daulat Singh Shekhawat &amp; Smt. Beena
+                                        Shekhawat</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-[10px] text-on-surface/40 uppercase tracking-tighter">
+                            Created by: Raghvendra Singh
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation Controls -->
+                <div class="grid grid-cols-4 gap-2 pt-8 border-t border-outline-variant">
+                    <button class="tab-btn flex flex-col items-center gap-1 group" onclick="switchTab('story')">
+                        <span
+                            class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">auto_stories</span>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-tighter text-on-surface/40 group-[.active]:text-primary group-[.active]:border-b border-primary">Story</span>
+                    </button>
+                    <button class="tab-btn flex flex-col items-center gap-1 group" onclick="switchTab('events')">
+                        <span
+                            class="material-symbols-outlined text-on-surface/40 group-[.active]:text-primary transition-colors">calendar_today</span>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-tighter text-on-surface/40 group-[.active]:text-primary">Events</span>
+                    </button>
+                    <button class="tab-btn flex flex-col items-center gap-1 group" onclick="switchTab('venue')">
+                        <span
+                            class="material-symbols-outlined text-on-surface/40 group-[.active]:text-primary transition-colors">explore</span>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-tighter text-on-surface/40 group-[.active]:text-primary">Venue</span>
+                    </button>
+                    <button class="tab-btn flex flex-col items-center gap-1 group" onclick="switchTab('family')">
+                        <span
+                            class="material-symbols-outlined text-on-surface/40 group-[.active]:text-primary transition-colors">diversity_3</span>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-tighter text-on-surface/40 group-[.active]:text-primary">Family</span>
+                    </button>
+                </div>
+            </div>
+            <p class="mt-8 font-headline text-primary italic opacity-60">Waitingly Looking forward to your arrival...
+            </p>
+        </div>
+    </div>
+    <script>
+        const music = document.getElementById("bgMusic");
+
+        // Auto play on first user interaction (best possible solution)
+        document.addEventListener("click", () => {
+            music.play().catch(() => { });
+        }, { once: true });
+
+        // Countdown Timer Logic
+        const weddingDate = new Date("April 20, 2026 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Screen Transition Logic
+        function openInvitation() {
+            const hero = document.getElementById('hero-section');
+            const content = document.getElementById('invitation-content');
+
+            hero.style.opacity = '0';
+            hero.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                hero.classList.add('hidden');
+                content.classList.remove('hidden');
+
+                // Use requestAnimationFrame for smooth entry
+                requestAnimationFrame(() => {
+                    content.style.transition = 'all 800ms ease-out';
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                    switchTab('story'); // Init first tab
+                });
+            }, 500);
+        }
+
+        // Content Tab Switching Logic
+        function switchTab(tabId) {
+            const contents = {
+                'story': document.getElementById('content-story'),
+                'events': document.getElementById('content-events'),
+                'venue': document.getElementById('content-venue'),
+                'family': document.getElementById('content-family')
+            };
+
+            const buttons = document.querySelectorAll('.tab-btn');
+
+            // Update buttons
+            buttons.forEach(btn => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                const label = btn.querySelector('span:last-child');
+                btn.classList.remove('active');
+                icon.classList.remove('text-primary');
+                icon.classList.add('text-on-surface/40');
+                label.classList.remove('text-primary');
+                label.classList.add('text-on-surface/40');
+
+                if (btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                    icon.classList.add('text-primary');
+                    icon.classList.remove('text-on-surface/40');
+                    label.classList.add('text-primary');
+                    label.classList.remove('text-on-surface/40');
+                }
+            });
+
+            // Update content with fade
+            Object.keys(contents).forEach(key => {
+                const el = contents[key];
+                if (key === tabId) {
+                    el.classList.remove('hidden-content');
+                    el.classList.add('active-content');
+                } else {
+                    el.classList.add('hidden-content');
+                    el.classList.remove('active-content');
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
